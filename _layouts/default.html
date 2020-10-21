@@ -4,14 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="William Barela">
+    <link rel="shortcut icon" href="/img/wb-32x32.svg" type="image/svg">
+    <meta name="google" value="notranslate">
+    <noscript>JavaScript must be enabled.</noscript>
+    {% seo %}
 
-{% seo %}
     <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
   </head>
   <body>
+    <nav id="top-nav">
+      <a href="/"><img src="/img/wb-dark.svg" alt="William Barela Logo" id="wb-logo"></a>
+      <div id="primary-navegation">
+        <ul class="primary-navegation-content">
+          <li><a href="">about</a></li>
+          <li><a href="">projects</a></li>
+          <li><a href="">skills</a></li>
+          <li><a href="">blog</a></li>
+        </ul>
+      </div>
+      <a href="#">
+        <img src="/img/hamburger-light.svg" alt="Main Menu" id="hamburger">
+        <img src="/img/close.svg" alt="Close" id="close" style="display: none">
+      </a>
+    </nav>
+
     <div class="wrapper">
       <article>
 
