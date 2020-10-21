@@ -54,15 +54,16 @@
   --h13-font-size: 0.0902rem;
 }
 
-// * {
-//     margin:0;
-//     margin-block-start: 0;
-//     margin-block-end: 0;
-//     padding:0;
-//     box-sizing: border-box;
-//     font-family: 'Roboto', sans-serif;
-//     color: var(--c146-3x4-0); 
-// }
+h1, h2, h3, h4, h5, h6, ul, li,
+a, section, article, div {
+    margin:0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    color: var(--c146-3x4-0); 
+}
 
 a {
   text-decoration: none;
