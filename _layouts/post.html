@@ -24,7 +24,6 @@ layout: default
 <div>
   {% if page.next.url %}
     <h3>Next Post</h3>
-    <a href="{{ page.next.url | prepend:site.url }}">{{page.next.title}} &raquo;</a>
+    <a href="{{ page.next.url | prepend:site.url }}">{{page.next.title}}</a>
   {% endif %}
 </div>
-
