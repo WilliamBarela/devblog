@@ -1,0 +1,77 @@
+---
+layout: post
+title: "Linked Lists"
+date: 2020-11-27 15:07
+---
+
+In my nearly seven years experience as a Linux System Administrator, one of the most useful Unix based utilities that I have enjoyed, yet also one of the most difficult to master is _curl_.
+As a Software Engineer, it is also one of those hidden gems which can come in handy when one needs to quickly retrieve a file or data in a server based environment and in a containerized one as well.
+Curl, indeed is the swiss army knife of command line utilities that can help you do things which otherwise would be extraordinarily cumbersome. 
+
+In simple terms, curl is a tool which allows you to transfer data to or from a server or a container without interaction and it allows you to use a multitude of protocols to do just that.
+Among the many protocols that it supports, you can use FTP, SFTP, HTTP, HTTPS, IMAP, POP3, and SMTP (the list literally goes on).
+
+It really is impossible to write a blog post about all of the amazing and exciting things that you can do with curl, including user authentication, HTTP GET and POST requests, cookies, headers, and my personal favorite, resuming file transfers (_rsync_ is also a very useful utility for such things).
+So, in this post I would like to focus on some aspects relevant to Software Engineers and give you just a small taste of _curl_ by demonstrating some of the cool features that it has to offer.
+
+## User Authentication
+
+Assuming the website or service you are trying to authenticate with is using HTTP/HTTPS authentication (i.e., the site is not instead just POSTing your login information), you can authenticate with curl by passing the _--user_ or _-u_ flag.
+
+```bash
+curl -u octocat:octocats1secret https://github.com/login
+```
+This will return the HTML page for your Github home page.
+Of course, if you are worried about your password (in this example, _octocats1secret_), you should make sure to set the HISTIGNORE global variable in your .bashrc.
+
+```bash
+# ~/.bashrc
+
+HISTIGNORE=' *'
+```
+
+Setting the above in your .bashrc will allow you to add a space before any command and it will be ignored in your .bash_history file.
+
+## Setting User Agent
+
+Content received from a website can vary depending on the version of web browser/client you are using (i.e., Chrome, Edge, Firefox, etc.). Also, web servers (i.e., NGINX, Apache, etc.) will sometimes be configured to not allow automated requests.
+By setting the user-agent, you can by-pass such restrictions and ensure that the content you receive is consistent. Curl will pass the string immediately after the _-A_ flag as the user-agent information in the request.
+
+```bash
+curl -A 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36' https://github.com/
+```
+
+## Including Headers
+
+If a website is using JWT tokens and if you retrieve it from localStorage or sessionStorage, you can transmit your request with a header including the JWT token in the typical Authorization: Bearer pattern.
+
+```bash
+curl -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiT2N0b2NhdCJ9.U0D-grB8cEE3Jv4cs8e7W1V550pTLzx7JhwDKRzh-vg' https://github.com/
+```
+
+Since JWT is session-less, you will be able to access the resources from the GET request you make or you can also POST your request with the _-d_ flag:
+
+```bash
+curl -d '{json_as_a_string}' -H 'Content-Type: application/json, Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiT2N0b2NhdCJ9.U0D-grB8cEE3Jv4cs8e7W1V550pTLzx7JhwDKRzh-vg' https://github.com/
+```
+
+If the API you are posting to instead uses URL encoded POST requests, you can also do this with curl.
+
+```bash
+curl -d 'name=octocat&domain=github' https://github.com
+```
+
+## Cookies
+
+Curl can collect, use, and help you to store cookies from a site. This is very useful on sites that use session storage. You should refer to the man of curl to see all of the different options that you can use, including the _-L_, _-b_, _-c_, and _-j_ flags.
+Very simply, _-b_ allows you to specify a file (i.e. cookie-jar) where you have stored a cookie so that you can make your requests and _-c_ will allow you to save a cookie to a file.
+
+## Saving a File to Disk
+
+If you want to save a file to disk with curl (as you often need to do in a containerized environment), you can use the _-o_ flag followed by the file name you want to use.
+
+```bash
+curl https://github.com -o github_homepage.html
+```
+
+I hope this post will have enlightened you about the dark side, and one of our many friends of the CLI. Perhaps in your next project you might find it saves you in a pinch or help you to automate a task in a Docker file.
