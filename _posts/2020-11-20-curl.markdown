@@ -4,7 +4,7 @@ title: "Curl"
 date: 2020-11-20 10:07
 ---
 
-In my nearly seven years experience as a Linux System Administrator, one of the most useful Unix based utilities that I have enjoyed, yet also one of the most difficult to master is _curl_.
+One of the most useful Unix based utilities that I have enjoyed, yet also one of the most difficult to master is _curl_.
 As a Software Engineer, it is also one of those hidden gems which can come in handy when one needs to quickly retrieve a file or data in a server based environment and in a containerized one as well.
 Curl, indeed is the swiss army knife of command line utilities that can help you do things which otherwise would be extraordinarily cumbersome. 
 
